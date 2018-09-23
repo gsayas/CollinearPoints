@@ -126,10 +126,10 @@ public class Point implements Comparable<Point> {
         // read the n points from a file
 
         Point[] points = new Point[4];
-        points[0] = new Point(19000,  10000);
-        points[1] = new Point(1, 0);
-        points[2] = new Point(0, 1);
-        points[3] = new Point(1, 1);
+        points[0] = new Point(10000,  10000);
+        points[1] = new Point(14000, 10000);
+        points[2] = new Point(10000, 14000);
+        points[3] = new Point(14000, 14000);
 
         // draw the points
         StdDraw.enableDoubleBuffering();
@@ -139,7 +139,10 @@ public class Point implements Comparable<Point> {
             p.draw();
         }
 
-        points[0].drawTo(points[3]);
+        points[0].drawTo(points[1]);
+        points[0].drawTo(points[2]);
+        points[1].drawTo(points[3]);
+        points[2].drawTo(points[3]);
         StdDraw.show();
 
     }
