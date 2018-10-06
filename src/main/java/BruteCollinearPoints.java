@@ -5,7 +5,7 @@ import java.util.List;
 public class BruteCollinearPoints {
 
     private Point[] points;
-    private int numberOfSegments;
+    //private int numberOfSegments;
     private List<LineSegment> segments;
 
     public BruteCollinearPoints(Point[] points) {
@@ -14,7 +14,7 @@ public class BruteCollinearPoints {
     }
 
     private void calculateSegments() {
-        numberOfSegments = 0;
+        //numberOfSegments = 0;
         segments = new ArrayList<>();
 
         for(int i=0; i<points.length; i++){
@@ -23,7 +23,7 @@ public class BruteCollinearPoints {
                     if(isSegment(points[i], points[j], points[k])){
                         for (int l = k+1; l < points.length; l++) {
                             if(isSegment(points[j], points[k], points[l])){
-                                numberOfSegments++;
+                                //numberOfSegments++;
                                 Point[] pointsInSegment = new Point[]{points[i], points[j], points[k], points[l]};
                                 Arrays.sort(pointsInSegment);
                                 segments.add(new LineSegment(pointsInSegment[0], pointsInSegment[3]));
@@ -36,10 +36,15 @@ public class BruteCollinearPoints {
     }
 
     private boolean isSegment(Point point, Point point1, Point point2) {
+        /*if(point.slopeTo(point1) == point1.slopeTo(point2)){
+            System.out.println(point + " - " + point1 + " - " + point2);
+        }*/
         return point.slopeTo(point1) == point1.slopeTo(point2);
     }
 
     public int numberOfSegments() {
-        return numberOfSegments;
+
+        segments.stream().forEach(System.out::println);
+        return segments.size();
     }
 }

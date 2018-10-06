@@ -49,12 +49,14 @@ public class BruteCollinearPointsTest {
         points[2] = new Point(10000, 14000);
         points[3] = new Point(10000, 16000);
 
-        points[4] = new Point(10000,  10000);
-        points[5] = new Point(14000, 10000);
-        points[6] = new Point(16000, 10000);
+        //points[4] = new Point(10000,  10000);
+        points[4] = new Point(14000, 10000);
+        points[5] = new Point(16000, 10000);
+        points[6] = new Point(18000, 10000);
         points[7] = new Point(20000, 10000);
 
         BruteCollinearPoints brute = new BruteCollinearPoints(points);
         assertEquals(2, brute.numberOfSegments());
+
     }
 }
