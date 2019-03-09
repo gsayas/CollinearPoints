@@ -102,7 +102,7 @@ public class BruteCollinearPointsTest {
         points[11] = new Point(20800, 20800);
 
         BruteCollinearPoints brute = new BruteCollinearPoints(points);
-        List<LineSegment> segmentList = brute.getSegments();
+        List<LineSegment> segmentList = brute.segments();
         System.out.println("expected: 3 " + "- actual: " + brute.numberOfSegments());
 
         BruteCollinearPointsTest.renderPoints(points);

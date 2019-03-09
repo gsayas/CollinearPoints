@@ -43,7 +43,7 @@ public class BruteCollinearPoints {
         return segments.size();
     }
 
-    public List<LineSegment> getSegments() {
+    public List<LineSegment> segments() {
         return segments;
     }
 }
