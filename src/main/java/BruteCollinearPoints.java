@@ -36,15 +36,14 @@ public class BruteCollinearPoints {
     }
 
     private boolean isSegment(Point point, Point point1, Point point2) {
-        /*if(point.slopeTo(point1) == point1.slopeTo(point2)){
-            System.out.println(point + " - " + point1 + " - " + point2);
-        }*/
         return point.slopeTo(point1) == point1.slopeTo(point2);
     }
 
     public int numberOfSegments() {
-
-        segments.stream().forEach(System.out::println);
         return segments.size();
+    }
+
+    public List<LineSegment> getSegments() {
+        return segments;
     }
 }

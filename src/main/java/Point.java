@@ -8,9 +8,9 @@
  *
  ******************************************************************************/
 
+import java.util.Arrays;
 import java.util.Comparator;
 
-import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdDraw;
 
 public class Point implements Comparable<Point> {
@@ -131,19 +131,19 @@ public class Point implements Comparable<Point> {
         points[2] = new Point(10000, 14000);
         points[3] = new Point(14000, 14000);
 
-        // draw the points
         StdDraw.enableDoubleBuffering();
         StdDraw.setXscale(0, 32768);
         StdDraw.setYscale(0, 32768);
-        for (Point p : points) {
-            p.draw();
-        }
+        Arrays.stream(points).forEach(point -> point.draw());
+        StdDraw.show();
 
         points[0].drawTo(points[1]);
         points[0].drawTo(points[2]);
         points[1].drawTo(points[3]);
         points[2].drawTo(points[3]);
+
         StdDraw.show();
 
     }
+
 }
