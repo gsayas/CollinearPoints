@@ -18,9 +18,9 @@ public class Point implements Comparable<Point> {
     private final int x;     // x-coordinate of this point
     private final int y;     // y-coordinate of this point
 
-    static int LESS = -1;
-    static int EQUAL = 0;
-    static int GREATER = 1;
+    private static int LESS = -1;
+    private static int EQUAL = 0;
+    private static int GREATER = 1;
 
     /**
      * Initializes a new point.

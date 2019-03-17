@@ -102,26 +102,11 @@ public class BruteCollinearPointsTest {
         points[11] = new Point(20800, 20800);
 
         BruteCollinearPoints brute = new BruteCollinearPoints(points);
-        List<LineSegment> segmentList = brute.segments();
         System.out.println("expected: 3 " + "- actual: " + brute.numberOfSegments());
 
-        BruteCollinearPointsTest.renderPoints(points);
-        BruteCollinearPointsTest.renderSegments(segmentList);
+        TestUtils.renderPoints(points);
+        TestUtils.renderSegments(brute.segments());
         StdDraw.show();
     }
-
-    private static void renderPoints(Point[] points) {
-        // draw the points
-        StdDraw.enableDoubleBuffering();
-        StdDraw.setXscale(0, 32768);
-        StdDraw.setYscale(0, 32768);
-        Arrays.stream(points).forEach(point -> point.draw());
-        StdDraw.show();
-    }
-
-    private static void renderSegments(List<LineSegment> segments) {
-        segments.stream().forEach(line -> line.draw());
-    }
-
 
 }

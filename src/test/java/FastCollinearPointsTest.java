@@ -1,7 +1,6 @@
 import static org.junit.Assert.assertEquals;
 
 import edu.princeton.cs.algs4.StdDraw;
-import java.util.List;
 import org.junit.Test;
 
 public class FastCollinearPointsTest {
@@ -187,14 +186,13 @@ public class FastCollinearPointsTest {
     points[15] = new Point(28000, 12000);
 
     FastCollinearPoints fast = new FastCollinearPoints(points);
-    List<LineSegment> segmentList = fast.segments();
     System.out.println("expected: 2 " + "- actual: " + fast.numberOfSegments());
 
     //TestUtils.renderPoints(points);
     TestUtils.renderPoints(new Point[]{points[8], points[9], points[10], points[11]});
 
-    TestUtils.renderSegments(segmentList);
-    TestUtils.printSegments(segmentList);
+    TestUtils.renderSegments(fast.segments());
+    TestUtils.printSegments(fast.segments());
     StdDraw.show();
   }
 

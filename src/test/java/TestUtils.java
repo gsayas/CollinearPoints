@@ -15,12 +15,12 @@ public class TestUtils {
     }
   }
 
-  static void renderSegments(List<LineSegment> segments) {
-    segments.stream().forEach(line -> line.draw());
+  static void renderSegments(LineSegment[] segments) {
+    Arrays.stream(segments).forEach(line -> line.draw());
   }
 
-  static void printSegments(List<LineSegment> segments) {
-    segments.stream().forEach(System.out::println);
+  static void printSegments(LineSegment[] segments) {
+    Arrays.stream(segments).forEach(System.out::println);
   }
 
   static void printPoints(Point[] points) {

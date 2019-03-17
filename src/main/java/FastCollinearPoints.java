@@ -1,13 +1,12 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class FastCollinearPoints {
 
   private List<Point> points;
-  private Map<String, LineSegment> segments;
+  private List<LineSegment> segments;
+  private List<String> keys;
 
   public FastCollinearPoints(Point[] points) {
     this.points = new ArrayList<>();
@@ -16,7 +15,8 @@ public class FastCollinearPoints {
   }
 
   private void calculateSegments() {
-    segments = new HashMap<>();
+    segments = new ArrayList<>();
+    keys = new ArrayList<>();
     Point origin;
     List<Point> sortedOnOrigin = new ArrayList<>();
 
@@ -81,15 +81,18 @@ public class FastCollinearPoints {
   }
 
   private void putSegmentIfAbsent(String key, LineSegment sortedSegment) {
-    segments.put(key, sortedSegment);
+    if (!keys.contains(key)) {
+      keys.add(key);
+      segments.add(sortedSegment);
+    }
   }
 
   public int numberOfSegments() {
     return segments.size();
   }
 
-  public List<LineSegment> segments() {
-    return new ArrayList<>(segments.values());
+  public LineSegment[] segments() {
+    return segments.toArray(new LineSegment[segments.size()]);
   }
 
 }

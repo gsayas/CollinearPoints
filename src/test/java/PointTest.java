@@ -10,6 +10,10 @@ import static org.junit.Assert.assertTrue;
 
 public class PointTest {
 
+    private static int LESS = -1;
+    private static int EQUAL = 0;
+    private static int GREATER = 1;
+
     @Test
     public void testCompareTo() {
         Point a = new Point(0, 0);
@@ -17,13 +21,13 @@ public class PointTest {
         Point c = new Point(0, 0);
         Point d = new Point(1, 0);
 
-        assertTrue(a.compareTo(b) == Point.LESS);
-        assertTrue( b.compareTo(a) == Point.GREATER);
+        assertTrue(a.compareTo(b) == PointTest.LESS);
+        assertTrue( b.compareTo(a) == PointTest.GREATER);
 
-        assertTrue( a.compareTo(d) == Point.LESS);
-        assertTrue( d.compareTo(a) == Point.GREATER);
+        assertTrue( a.compareTo(d) == PointTest.LESS);
+        assertTrue( d.compareTo(a) == PointTest.GREATER);
 
-        assertTrue( a.compareTo(c) == Point.EQUAL);
+        assertTrue( a.compareTo(c) == PointTest.EQUAL);
     }
 
     @Test
