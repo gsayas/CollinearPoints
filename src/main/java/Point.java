@@ -42,6 +42,12 @@ public class Point implements Comparable<Point> {
         StdDraw.point(x, y);
     }
 
+    /*public void drawWithinfo(int index) {
+        StdDraw.point(x, y);
+        String info = ((Integer)index).toString() + ": " + "(" + x + ", " + y + ")";
+        StdDraw.text(x + 500, y + 500, info);
+    }*/
+
     /**
      * Draws the line segment between this point and the specified point
      * to standard draw.

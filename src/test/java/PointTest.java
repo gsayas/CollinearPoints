@@ -1,3 +1,7 @@
+import edu.princeton.cs.algs4.StdDraw;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -40,4 +44,51 @@ public class PointTest {
         assertFalse(new Double(-0.0) == new Double(+0.0));
         //assertFalse(-0.0 == +0.0); TRUE
     }
+
+    @Test
+    public void testSlopeOrder() {
+        Point[] points = new Point[8];
+        points[0] = new Point(10000,  10500);
+        points[1] = new Point(10000, 12000);
+        points[2] = new Point(10000, 14000);
+        points[3] = new Point(10000, 16000);
+
+        points[4] = new Point(7000, 12000);
+        points[5] = new Point(16000, 12000);
+        points[6] = new Point(18000, 12000);
+        points[7] = new Point(20000, 12000);
+
+
+        Comparator<Point> comparator = points[4].slopeOrder();
+        //assertEquals(1, comparator.compare(points[0], points[1]));
+
+        Arrays.sort(points, comparator);
+        TestUtils.printPoints(points);
+        TestUtils.renderPoints(Arrays.copyOfRange(points,4, 4));
+        StdDraw.show();
+    }
+
+    public static void main(String[] args) {
+        Point[] points = new Point[8];
+        points[0] = new Point(10000,  10500);
+        points[1] = new Point(10000, 12000);
+        points[2] = new Point(10000, 14000);
+        points[3] = new Point(10000, 16000);
+
+        points[4] = new Point(7000, 12000);
+        points[5] = new Point(16000, 12000);
+        points[6] = new Point(18000, 12000);
+        points[7] = new Point(20000, 12000);
+
+
+        Comparator<Point> comparator = points[1].slopeOrder();
+        //System.out.println("expected: 1 " + "- actual: " + comparator.compare(points[0], points[1]));
+        //TestUtils.renderPoints(new Point[]{points[4], points[0], points[1]});
+
+        Arrays.sort(points, comparator);
+        TestUtils.printPoints(points);
+        TestUtils.renderPoints(points);
+        StdDraw.show();
+    }
+
 }
