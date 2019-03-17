@@ -15,12 +15,12 @@ import edu.princeton.cs.algs4.StdDraw;
 
 public class Point implements Comparable<Point> {
 
-  private final int x;     // x-coordinate of this point
-  private final int y;     // y-coordinate of this point
-
   private static final int LESS = -1;
   private static final int EQUAL = 0;
   private static final int GREATER = 1;
+
+  private final int x;     // x-coordinate of this point
+  private final int y;     // y-coordinate of this point
 
   /**
    * Initializes a new point.
@@ -42,11 +42,11 @@ public class Point implements Comparable<Point> {
     StdDraw.point(x, y);
   }
 
-    /*public void drawWithinfo(int index) {
+    /* public void drawWithinfo(int index) {
         StdDraw.point(x, y);
         String info = ((Integer)index).toString() + ": " + "(" + x + ", " + y + ")";
         StdDraw.text(x + 500, y + 500, info);
-    }*/
+    } */
 
   /**
    * Draws the line segment between this point and the specified point to standard draw.
@@ -72,7 +72,7 @@ public class Point implements Comparable<Point> {
     if (that.y == this.y && this.x == that.x) {
       return Double.NEGATIVE_INFINITY;
     } else if (that.y == this.y) {
-      return new Double(+0.0);
+      return +0.0;
     } else if (this.x == that.x) {
       return Double.POSITIVE_INFINITY;
     } else {
@@ -103,11 +103,11 @@ public class Point implements Comparable<Point> {
 
   private final class CompareBySlopes implements Comparator<Point> {
 
-    public int compare(Point x, Point y) {
-      if (Point.this.slopeTo(x) == Point.this.slopeTo(y)) {
+    public int compare(Point argX, Point argY) {
+      if (Point.this.slopeTo(argX) == Point.this.slopeTo(argY)) {
         return 0;
       } else {
-        return Point.this.slopeTo(x) < Point.this.slopeTo(y) ? -1 : 1;
+        return Point.this.slopeTo(argX) < Point.this.slopeTo(argY) ? -1 : 1;
       }
     }
   }
