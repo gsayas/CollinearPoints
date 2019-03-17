@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class FastCollinearPoints {
@@ -9,9 +8,26 @@ public class FastCollinearPoints {
   private List<String> keys;
 
   public FastCollinearPoints(Point[] points) {
-    this.points = new ArrayList<>();
-    this.points.addAll(Arrays.asList(points));
+    checkArgument(points);
+    initPoints(points);
     calculateSegments();
+  }
+
+  private void checkArgument(Point[] argPoints) {
+    if (argPoints == null) {
+      throw new java.lang.IllegalArgumentException();
+    }
+
+  }
+
+  private void initPoints(Point[] argPoints) {
+    this.points = new ArrayList<>();
+    for (Point point : argPoints) {
+      if (point == null || this.points.contains(point)) {
+        throw new java.lang.IllegalArgumentException();
+      }
+      this.points.add(point);
+    }
   }
 
   private void calculateSegments() {
@@ -37,23 +53,24 @@ public class FastCollinearPoints {
     Point previousPoint;
     int size = sortedOnOrigin.size();
 
-    while( currentIndex < size ) {
+    while (currentIndex < size) {
       currentPoint = sortedOnOrigin.get(currentIndex);
       previousPoint = sortedOnOrigin.get(currentIndex - 1);
 
-      if( areInSameSegment(origin, currentPoint, previousPoint) ) {
-        if (candidateSegment.size() == 0 && origin.compareTo(previousPoint) != 0) candidateSegment.add(previousPoint);
+      if (areInSameSegment(origin, currentPoint, previousPoint)) {
+        if (candidateSegment.isEmpty() && origin.compareTo(previousPoint) != 0) {
+          candidateSegment.add(previousPoint);
+        }
         candidateSegment.add(currentPoint);
       } else {
-        if ( isEnoughSegment(candidateSegment) ) {
+        if (isEnoughSegment(candidateSegment)) {
           candidateSegment.add(origin);
           addNewSegmentIfAbsent(candidateSegment);
         }
         candidateSegment.clear();
       }
 
-
-      if ( isEnoughSegment(candidateSegment) && currentIndex + 1 == size ) {
+      if (isEnoughSegment(candidateSegment) && currentIndex + 1 == size) {
         candidateSegment.add(origin);
         addNewSegmentIfAbsent(candidateSegment);
         candidateSegment.clear();
@@ -65,19 +82,25 @@ public class FastCollinearPoints {
   }
 
   private boolean areInSameSegment(Point origin, Point currentPoint, Point previousPoint) {
-    return origin.compareTo(previousPoint) == 0 || origin.slopeTo(currentPoint) == origin.slopeTo(previousPoint);
+    return origin.compareTo(previousPoint) == 0 || origin.slopeTo(currentPoint) == origin
+        .slopeTo(previousPoint);
   }
 
   private boolean isEnoughSegment(List<Point> candidateSegment) {
     return candidateSegment.size() >= 3;
   }
 
-  private void addNewSegmentIfAbsent(List<Point> candidateSegment ) {
+  private void addNewSegmentIfAbsent(List<Point> candidateSegment) {
     candidateSegment.sort(Point::compareTo);
-    LineSegment sortedSegment = new LineSegment(candidateSegment.get(0),
-        candidateSegment.get(candidateSegment.size() - 1));
-    String key = sortedSegment.toString();
+    Point x = candidateSegment.get(0);
+    Point y = candidateSegment.get(candidateSegment.size() - 1);
+    LineSegment sortedSegment = new LineSegment(x, y);
+    String key = segmentToString(x, y);
     putSegmentIfAbsent(key, sortedSegment);
+  }
+
+  private String segmentToString(Point x, Point y) {
+    return x.toString() + " -- " + y.toString();
   }
 
   private void putSegmentIfAbsent(String key, LineSegment sortedSegment) {
